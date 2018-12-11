@@ -2,6 +2,7 @@ package com.mmteams91.todoapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.mmteams91.todoapp.core.presentation.DisposableBinder
 import com.mmteams91.todoapp.features.auth.AuthFragment
 
 class AppActivity : AppCompatActivity() {

@@ -1,7 +1,8 @@
 package com.mmteams91.todoapp.features.auth
 
-import android.arch.lifecycle.ViewModel
+import com.mmteams91.todoapp.core.presentation.viewmodel.BaseViewModel
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel : BaseViewModel() {
+
     // TODO: Implement the ViewModel
 }
