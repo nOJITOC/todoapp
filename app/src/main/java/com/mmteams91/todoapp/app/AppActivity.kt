@@ -1,8 +1,8 @@
-package com.mmteams91.todoapp
+package com.mmteams91.todoapp.app
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.mmteams91.todoapp.core.presentation.DisposableBinder
+import android.support.v7.app.AppCompatActivity
+import com.mmteams91.todoapp.R
 import com.mmteams91.todoapp.features.auth.AuthFragment
 
 class AppActivity : AppCompatActivity() {

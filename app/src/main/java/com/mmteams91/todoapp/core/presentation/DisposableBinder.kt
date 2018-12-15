@@ -44,8 +44,8 @@ class DisposableBinder private constructor(lifecycleOwner: LifecycleOwner) : IDi
     @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
     fun onEvent(owner: LifecycleOwner, event: Lifecycle.Event) {
         lastEvent = event
-        disposables[event]?.clear()
-        disposables[ON_ANY]?.clear()
+        disposables.remove(event)?.clear()
+        disposables.remove(ON_ANY)?.clear()
         if (event == Lifecycle.Event.ON_DESTROY) {
             owner.lifecycle.removeObserver(this)
         }
