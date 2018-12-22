@@ -1,9 +1,6 @@
-package com.fourxxi.therussianrules.app
+package com.mmteams91.todoapp.app
 
 import android.app.Application
-import com.mmteams91.todoapp.app.AppComponent
-import com.vk.sdk.VKSdk
-import io.realm.Realm
 import timber.log.Timber
 
 
@@ -12,15 +9,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         prepareTimber()
-        appComponent = DaggerAppComponent.builder()
-                .application(this)
-                .build()
-        VKSdk.initialize(this)
-        prepareRealm()
-    }
-
-    private fun prepareRealm() {
-        Realm.init(this)
+//        appComponent = DaggerAppComponent.builder()
+//                .application(this)
+//                .build()
     }
 
     private fun prepareTimber() {

@@ -2,6 +2,7 @@ package com.mmteams91.todoapp.app
 
 import android.app.Application
 import android.content.Context
+import com.mmteams91.todoapp.core.presentation.viewmodel.ViewModelModule
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
@@ -14,8 +15,9 @@ import javax.inject.Singleton
  * Application & Activities are provided into your graph for you.
  * [ ].
  */
-@Module(includes = []
-)
+@Module(includes = [
+    ViewModelModule::class
+])
 abstract class AppModule {
     //expose Application as an injectable context
 

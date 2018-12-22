@@ -1,14 +1,13 @@
 package com.mmteams91.todoapp.app
 
 import android.app.Application
+import com.mmteams91.todoapp.core.presentation.viewmodel.BaseViewModelComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [
-    AppModule::class
-])
+@Component
 interface AppComponent {
 
 

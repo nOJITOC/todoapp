@@ -2,12 +2,7 @@ package com.mmteams91.todoapp.core.presentation.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import com.mmteams91.todoapp.core.presentation.EVENT_PREFIX
-import com.mmteams91.todoapp.core.presentation.viewmodel.BaseViewModel.Events.EVENT_ERROR
-import com.mmteams91.todoapp.core.presentation.viewmodel.BaseViewModel.Events.EVENT_HIDE_PROGRESS
-import com.mmteams91.todoapp.core.presentation.viewmodel.BaseViewModel.Events.EVENT_SHOW_PROGRESS
-import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Single
 import io.reactivex.processors.SingleQueueProcessor
 
 open class BaseViewModel : ViewModel(), IViewModel {
@@ -21,29 +16,11 @@ open class BaseViewModel : ViewModel(), IViewModel {
         return eventPublisher
     }
 
-    override fun publishErrorEvent(messageRes: Int) {
-        publishEvent(EVENT_ERROR, messageRes)
+    override fun onCreate() {
     }
 
-    override fun publishErrorEvent(message: CharSequence) {
-        publishEvent(EVENT_ERROR, message)
+    override fun onStart() {
     }
-
-    fun publishShowProgressEvent() = publishEvent(EVENT_SHOW_PROGRESS)
-
-    fun publishHideProgressEvent() = publishEvent(EVENT_HIDE_PROGRESS)
-
-    fun <T> wrapWithProgress(flowable: Flowable<T>) = flowable.doOnSubscribe {
-        publishShowProgressEvent()
-    }.doOnTerminate(::publishHideProgressEvent)
-
-    fun <T> wrapWithProgress(single: Single<T>) = single.doOnSubscribe {
-        publishShowProgressEvent()
-    }.doFinally(::publishHideProgressEvent)
-
-    fun wrapWithProgress(completable: Completable) = completable.doOnSubscribe {
-        publishShowProgressEvent()
-    }.doOnTerminate(::publishHideProgressEvent)
 
 
     object Events {

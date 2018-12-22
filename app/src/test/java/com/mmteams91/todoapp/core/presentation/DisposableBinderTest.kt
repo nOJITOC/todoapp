@@ -4,6 +4,7 @@ import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.Lifecycle.Event.*
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LifecycleRegistry
+import com.mmteams91.todoapp.core.presentation.view.DisposableBinder
 import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.Disposables
 import org.junit.Assert.assertTrue

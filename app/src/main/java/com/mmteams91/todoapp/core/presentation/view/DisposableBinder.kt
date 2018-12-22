@@ -1,10 +1,11 @@
-package com.mmteams91.todoapp.core.presentation
+package com.mmteams91.todoapp.core.presentation.view
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.Lifecycle.Event.*
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.OnLifecycleEvent
+import com.mmteams91.todoapp.core.presentation.IDisposableBinder
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
