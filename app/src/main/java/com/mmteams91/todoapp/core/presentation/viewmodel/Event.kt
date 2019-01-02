@@ -12,6 +12,12 @@ open class Event(val name: String) {
     override fun hashCode(): Int {
         return name.hashCode()
     }
+
+
+    inline fun <reified T> typedPayload() = (this as? EventWithPayload)?.getTypedPayload<T>()
+    override fun toString(): String {
+        return "Event(name='$name')"
+    }
 }
 
 class EventWithPayload(name: String, val payload: Any) : Event(name) {
@@ -30,6 +36,10 @@ class EventWithPayload(name: String, val payload: Any) : Event(name) {
         var result = super.hashCode()
         result = 31 * result + payload.hashCode()
         return result
+    }
+
+    override fun toString(): String {
+        return "EventWithPayload(name=$name,payload=$payload)"
     }
 
 }

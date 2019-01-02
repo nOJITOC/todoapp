@@ -2,6 +2,7 @@ package com.mmteams91.todoapp.app
 
 import android.app.Application
 import android.content.Context
+import com.mmteams91.todoapp.core.data.PersistenceModule
 import com.mmteams91.todoapp.core.presentation.viewmodel.ViewModelModule
 import dagger.Binds
 import dagger.Module
@@ -16,7 +17,8 @@ import javax.inject.Singleton
  * [ ].
  */
 @Module(includes = [
-    ViewModelModule::class
+    ViewModelModule::class,
+    PersistenceModule::class
 ])
 abstract class AppModule {
     //expose Application as an injectable context

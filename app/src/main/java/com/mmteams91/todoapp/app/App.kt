@@ -9,9 +9,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         prepareTimber()
-//        appComponent = DaggerAppComponent.builder()
-//                .application(this)
-//                .build()
+        appComponent = DaggerAppComponent.builder()
+                .application(this)
+                .build()
     }
 
     private fun prepareTimber() {
