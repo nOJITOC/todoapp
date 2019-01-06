@@ -1,7 +1,7 @@
-package com.mmteams91.todoapp.core.domain.usecases
+package com.mmteams91.todoapp.core.domain.usecases.base
 
-import com.mmteams91.todoapp.core.domain.usecases.UseCaseRxWrapper.toCompletable
-import com.mmteams91.todoapp.core.domain.usecases.UseCaseRxWrapper.toSingle
+import com.mmteams91.todoapp.core.domain.usecases.base.UseCaseRxWrapper.toCompletable
+import com.mmteams91.todoapp.core.domain.usecases.base.UseCaseRxWrapper.toSingle
 
 
 interface UseCase<Q, P> {

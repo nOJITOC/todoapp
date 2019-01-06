@@ -20,5 +20,5 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(AppViewModel::class)
     fun appViewModel(viewModel: AppViewModel): ViewModel
-
+    
 }

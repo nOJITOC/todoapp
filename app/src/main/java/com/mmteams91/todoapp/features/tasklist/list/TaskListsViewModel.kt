@@ -1,7 +1,7 @@
 package com.mmteams91.todoapp.features.tasklist.list
 
-import com.mmteams91.todoapp.core.domain.usecases.FlowableUseCase
-import com.mmteams91.todoapp.core.domain.usecases.run
+import com.mmteams91.todoapp.core.domain.usecases.base.FlowableUseCase
+import com.mmteams91.todoapp.core.domain.usecases.base.run
 import com.mmteams91.todoapp.core.extensions.safeSubscribe
 import com.mmteams91.todoapp.core.presentation.EVENT_PREFIX
 import com.mmteams91.todoapp.core.presentation.viewmodel.BaseFragmentViewModel

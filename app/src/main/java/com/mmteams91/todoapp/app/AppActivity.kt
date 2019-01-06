@@ -9,16 +9,16 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.mmteams91.todoapp.R
+import com.mmteams91.todoapp.app.AppViewModel.Events.CHECK_PERMISSION
+import com.mmteams91.todoapp.app.AppViewModel.Events.ERROR
+import com.mmteams91.todoapp.app.AppViewModel.Events.HIDE_PROGRESS
+import com.mmteams91.todoapp.app.AppViewModel.Events.SHOW_PROGRESS
 import com.mmteams91.todoapp.core.data.permissions.PermissionTracker
 import com.mmteams91.todoapp.core.extensions.resolveColor
 import com.mmteams91.todoapp.core.extensions.safeSubscribe
 import com.mmteams91.todoapp.core.presentation.IDisposableBinder
 import com.mmteams91.todoapp.core.presentation.view.DisposableBinder
 import com.mmteams91.todoapp.core.presentation.viewmodel.BaseViewModel
-import com.mmteams91.todoapp.app.AppViewModel.Events.CHECK_PERMISSION
-import com.mmteams91.todoapp.app.AppViewModel.Events.ERROR
-import com.mmteams91.todoapp.app.AppViewModel.Events.HIDE_PROGRESS
-import com.mmteams91.todoapp.app.AppViewModel.Events.SHOW_PROGRESS
 import com.mmteams91.todoapp.core.presentation.viewmodel.Event
 import com.mmteams91.todoapp.core.presentation.viewmodel.EventWithPayload
 import com.mmteams91.todoapp.core.presentation.viewmodel.ViewModelFactory
@@ -112,6 +112,5 @@ class AppActivity : AppCompatActivity(), IAppView, LifecycleObserver {
 
     private fun <T : BaseViewModel> obtainViewModel(viewModelClass: Class<T>, viewModelFactory: ViewModelFactory) =
             ViewModelProviders.of(this, viewModelFactory).get(viewModelClass)
-
 
 }

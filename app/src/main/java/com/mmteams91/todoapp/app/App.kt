@@ -14,6 +14,7 @@ class App : Application() {
                 .build()
     }
 
+
     private fun prepareTimber() {
         Timber.plant(Timber.DebugTree())
     }

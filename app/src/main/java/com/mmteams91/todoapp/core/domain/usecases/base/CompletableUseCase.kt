@@ -1,4 +1,4 @@
-package com.mmteams91.todoapp.core.domain.usecases
+package com.mmteams91.todoapp.core.domain.usecases.base
 
 import io.reactivex.Completable
 import io.reactivex.Observable

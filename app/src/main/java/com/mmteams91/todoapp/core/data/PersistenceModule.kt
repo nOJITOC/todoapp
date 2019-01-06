@@ -15,5 +15,4 @@ class PersistenceModule {
     fun providePreferences(context: Context): SharedPreferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
 
 }
-
 private const val PREFERENCE_NAME = BuildConfig.APPLICATION_ID + ".Preferences"

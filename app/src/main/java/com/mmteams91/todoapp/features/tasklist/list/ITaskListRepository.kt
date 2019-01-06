@@ -5,4 +5,5 @@ import io.reactivex.Flowable
 interface ITaskListRepository {
 
     fun getTaskLists():Flowable<List<TaskListRecord>>
+
 }

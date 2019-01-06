@@ -10,24 +10,20 @@ import io.reactivex.disposables.Disposables
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.MockitoAnnotations.initMocks
 
 class DisposableBinderTest {
 
     private lateinit var subject: DisposableBinder
-    @Mock
     lateinit var lifecycleOwner: LifecycleOwner
     private lateinit var registry: LifecycleRegistry
     private lateinit var disposable: Disposable
 
     @Before
     fun setUp() {
-        initMocks(this)
         disposable = Disposables.fromRunnable { }
+
+        lifecycleOwner = LifecycleOwner { registry }
         registry = LifecycleRegistry(lifecycleOwner)
-        `when`(lifecycleOwner.lifecycle).thenReturn(registry)
         subject = DisposableBinder.on(lifecycleOwner)
     }
 
