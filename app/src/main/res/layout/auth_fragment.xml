@@ -5,16 +5,57 @@
     android:id="@+id/auth"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.auth.AuthFragment">
+    tools:context=".features.user.auth.AuthFragment">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/emailContainer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="AuthFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_16"
+        app:layout_constraintBottom_toTopOf="@+id/passwordContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
 
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/email">
+
+            <requestFocus />
+        </android.support.design.widget.TextInputEditText>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/passwordContainer"
+        android:layout_marginTop="@dimen/size_8"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_16"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintTop_toBottomOf="@+id/emailContainer">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            >
+            <requestFocus />
+        </android.support.design.widget.TextInputEditText>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_16"
+        android:backgroundTint="?colorAccent"
+        android:text="@string/login"
+        android:textSize="@dimen/text_24"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </android.support.constraint.ConstraintLayout>

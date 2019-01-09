@@ -3,10 +3,19 @@ package com.mmteams91.todoapp.core.extensions
 import com.mmteams91.todoapp.core.utils.Optional
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
+import java.util.concurrent.atomic.AtomicBoolean
 
+
+fun <T> Flowable<T>.doOnFirst(doOnFirst: (T) -> Unit): Flowable<T> {
+    val isFirstEmittedItem = AtomicBoolean(true)
+    return doOnNext {
+        if (isFirstEmittedItem.getAndSet(false)) {
+            doOnFirst.invoke(it)
+        }
+    }
+}
 
 fun <T, R> Flowable<out Iterable<T>>.withIterable(func: (T) -> R): Flowable<List<R>> {
     return this.flatMap { iterable ->
@@ -61,8 +70,7 @@ fun <T> Flowable<List<T>>.sortList(func: (T, T) -> Int): Flowable<List<T>> {
 fun <T> Flowable<Optional<T>>.toSingle(): Single<T> = map { it.get() }.firstOrError()
 
 
-fun <T> Observable<T>.safeSubscribe(onError: (Throwable) -> Unit = {}, onNext: (T) -> Unit): Disposable = subscribe(onNext,onError)
-fun <T> Flowable<T>.safeSubscribe(onError: (Throwable) -> Unit = {},onNext: (T) -> Unit): Disposable = subscribe(onNext,onError)
+fun <T> Flowable<T>.safeSubscribe(onError: (Throwable) -> Unit = {}, onNext: (T) -> Unit): Disposable = subscribe(onNext, onError)
 
 fun <T> Single<T>.safeSubscribe(onError: (Throwable) -> Unit = {}, onSuccess: (T) -> Unit): Disposable = subscribe(onSuccess, onError)
 

@@ -15,6 +15,7 @@ open class Event(val name: String) {
 
 
     inline fun <reified T> typedPayload() = (this as? EventWithPayload)?.getTypedPayload<T>()
+
     override fun toString(): String {
         return "Event(name='$name')"
     }

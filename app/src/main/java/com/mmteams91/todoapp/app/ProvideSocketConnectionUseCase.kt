@@ -5,6 +5,7 @@ import com.mmteams91.todoapp.core.domain.usecases.base.UseCase
 import com.mmteams91.todoapp.core.domain.usecases.preferences.TrackFromPrefsUseCase
 import com.mmteams91.todoapp.core.extensions.EMPTY
 import com.mmteams91.todoapp.core.extensions.safeSubscribe
+import com.mmteams91.todoapp.features.user.data.WEB_SOCKET_URL_KEY
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,5 +26,3 @@ class ProvideSocketConnectionUseCase @Inject constructor(
                 }
     }
 }
-
-private const val WEB_SOCKET_URL_KEY = "WEB_SOCKET_URL_KEY"

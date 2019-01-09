@@ -3,7 +3,6 @@ package com.mmteams91.todoapp.features.tasklist.list
 import com.mmteams91.todoapp.core.domain.usecases.base.FlowableUseCase
 import com.mmteams91.todoapp.core.domain.usecases.base.run
 import com.mmteams91.todoapp.core.extensions.safeSubscribe
-import com.mmteams91.todoapp.core.presentation.EVENT_PREFIX
 import com.mmteams91.todoapp.core.presentation.viewmodel.BaseFragmentViewModel
 import io.reactivex.Flowable
 import io.reactivex.processors.BehaviorProcessor
@@ -35,7 +34,7 @@ class TaskListsViewModel(
     }
 
     companion object {
-        const val SHOW_NO_TASKS = EVENT_PREFIX + "Show no tasks"
+        const val SHOW_NO_TASKS = "Show no tasks"
     }
 
 }

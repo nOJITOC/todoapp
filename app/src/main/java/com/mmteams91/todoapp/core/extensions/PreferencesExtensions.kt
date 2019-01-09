@@ -6,7 +6,7 @@ fun SharedPreferences.applyBoolean(key: String, value: Boolean) = edit().putBool
 fun SharedPreferences.applyFloat(key: String, value: Float) = edit().putFloat(key, value).apply()
 fun SharedPreferences.applyLong(key: String, value: Long) = edit().putLong(key, value).apply()
 fun SharedPreferences.applyInt(key: String, value: Int) = edit().putInt(key, value).apply()
-fun SharedPreferences.applyString(key: String, value: String) = edit().putString(key, value).apply()
+fun SharedPreferences.applyString(key: String, value: String?) = edit().putString(key, value).apply()
 
 @Suppress("UNCHECKED_CAST")
 fun <T : Any> SharedPreferences.getPrimitive(key: String, defaultValue: T): T {

@@ -17,6 +17,8 @@ class TaskListsViewModelTest : ViewModelTestBasis<TaskListsViewModel>() {
     lateinit var trackTaskListsUseCase: TrackTaskListsUseCase
     @Mock
     lateinit var taskListsRepository: ITaskListRepository
+    @Mock
+    lateinit var appViewModel: AppViewModel
     val transformer = TaskListFromRecordTransformer()
     @Before
     fun setUp() {
@@ -25,7 +27,9 @@ class TaskListsViewModelTest : ViewModelTestBasis<TaskListsViewModel>() {
         `when`(taskListsRepository.getTaskLists()).thenReturn(flowable)
         trackTaskListsUseCase = TrackTaskListsUseCase(taskListsRepository, transformer)
         subject = TaskListsViewModel(trackTaskListsUseCase)
-        subject.appViewModel = AppViewModel()
+
+
+        subject.appViewModel = appViewModel
     }
 
     private fun givenTaskList(count: Int = 3) {
@@ -52,6 +56,7 @@ class TaskListsViewModelTest : ViewModelTestBasis<TaskListsViewModel>() {
     private fun thenTaskListsSubscriberConsumeValues(subscriber: TestSubscriber<List<TaskListVm>>) {
         subscriber.awaitCount(1, BaseTestConsumer.TestWaitStrategy.SLEEP_1MS, 1000)
         subscriber.assertValues(data.map { transformer.transform(it) })
+
     }
 
     private fun whenSubscribeToTaskLists(): TestSubscriber<List<TaskListVm>> {

@@ -7,6 +7,7 @@ import com.mmteams91.todoapp.core.presentation.viewmodel.Event
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 interface IView<Vm : BaseViewModel> {
     var viewModel: Vm
@@ -23,6 +24,7 @@ interface IView<Vm : BaseViewModel> {
                 .observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .safeSubscribe({ subscribeToEvents() }) {
+                    Timber.d("Event: $it")
                     obtainEvent(it)
                 }.also { bind(it) }
     }

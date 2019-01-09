@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TrackFromPrefsUseCase @Inject constructor(
+open class TrackFromPrefsUseCase @Inject constructor(
         private val sharedPreferences: SharedPreferences,
         private val backgroundScheduler: Scheduler = Schedulers.newThread()
 ) {

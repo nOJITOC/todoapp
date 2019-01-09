@@ -16,13 +16,15 @@ import com.mmteams91.todoapp.app.AppViewModel.Events.SHOW_PROGRESS
 import com.mmteams91.todoapp.core.data.permissions.PermissionTracker
 import com.mmteams91.todoapp.core.extensions.resolveColor
 import com.mmteams91.todoapp.core.extensions.safeSubscribe
+import com.mmteams91.todoapp.core.extensions.showFragment
+import com.mmteams91.todoapp.core.extensions.transact
 import com.mmteams91.todoapp.core.presentation.IDisposableBinder
 import com.mmteams91.todoapp.core.presentation.view.DisposableBinder
 import com.mmteams91.todoapp.core.presentation.viewmodel.BaseViewModel
 import com.mmteams91.todoapp.core.presentation.viewmodel.Event
 import com.mmteams91.todoapp.core.presentation.viewmodel.EventWithPayload
 import com.mmteams91.todoapp.core.presentation.viewmodel.ViewModelFactory
-import com.mmteams91.todoapp.features.auth.AuthFragment
+import com.mmteams91.todoapp.features.user.auth.AuthFragment
 import kotlinx.android.synthetic.main.app_activity.*
 import javax.inject.Inject
 
@@ -62,6 +64,25 @@ class AppActivity : AppCompatActivity(), IAppView, LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     override fun viewOnStart() {
         super.viewOnStart()
+
+        trackNavigationEvents()
+    }
+
+    private fun trackNavigationEvents() {
+        viewModel.navigateFlow()
+                .subscribe({ obtainScreen(it) }, { trackNavigationEvents() })
+                .also { bind(it) }
+    }
+
+    private fun obtainScreen(screen: Screen) {
+        val fragment = screen.newInstance()
+        supportFragmentManager.transact {
+            replace(R.id.container,fragment,screen.name())
+            if(screen.addToBackStack){
+                addToBackStack(screen.name())
+            }
+        }
+        showFragment(fragment, screen.addToBackStack)
     }
 
     override fun obtainEvent(event: Event) {
