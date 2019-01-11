@@ -16,16 +16,15 @@ import com.mmteams91.todoapp.app.AppViewModel.Events.SHOW_PROGRESS
 import com.mmteams91.todoapp.core.data.permissions.PermissionTracker
 import com.mmteams91.todoapp.core.extensions.resolveColor
 import com.mmteams91.todoapp.core.extensions.safeSubscribe
-import com.mmteams91.todoapp.core.extensions.showFragment
-import com.mmteams91.todoapp.core.extensions.transact
 import com.mmteams91.todoapp.core.presentation.IDisposableBinder
 import com.mmteams91.todoapp.core.presentation.view.DisposableBinder
 import com.mmteams91.todoapp.core.presentation.viewmodel.BaseViewModel
 import com.mmteams91.todoapp.core.presentation.viewmodel.Event
 import com.mmteams91.todoapp.core.presentation.viewmodel.EventWithPayload
 import com.mmteams91.todoapp.core.presentation.viewmodel.ViewModelFactory
-import com.mmteams91.todoapp.features.user.auth.AuthFragment
+import io.reactivex.processors.lifecycleEventsFlow
 import kotlinx.android.synthetic.main.app_activity.*
+import timber.log.Timber
 import javax.inject.Inject
 
 class AppActivity : AppCompatActivity(), IAppView, LifecycleObserver {
@@ -33,22 +32,23 @@ class AppActivity : AppCompatActivity(), IAppView, LifecycleObserver {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
+    init {
+        lifecycleEventsFlow().safeSubscribe {
+            Timber.e("$it")
+        }
+    }
+
     @Inject
     lateinit var permissionTracker: PermissionTracker
     override var disposableBinder: IDisposableBinder = DisposableBinder.on(this)
     override lateinit var viewModel: AppViewModel
-
+    private val navigator: Navigator = FragmentNavigator(supportFragmentManager, R.id.container)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initComponent()
         initViewModel()
         lifecycle.addObserver(this)
         setContentView(R.layout.app_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, AuthFragment.newInstance())
-                    .commitNow()
-        }
     }
 
     private fun initComponent() {
@@ -70,19 +70,8 @@ class AppActivity : AppCompatActivity(), IAppView, LifecycleObserver {
 
     private fun trackNavigationEvents() {
         viewModel.navigateFlow()
-                .subscribe({ obtainScreen(it) }, { trackNavigationEvents() })
+                .subscribe(navigator::navigateTo)
                 .also { bind(it) }
-    }
-
-    private fun obtainScreen(screen: Screen) {
-        val fragment = screen.newInstance()
-        supportFragmentManager.transact {
-            replace(R.id.container,fragment,screen.name())
-            if(screen.addToBackStack){
-                addToBackStack(screen.name())
-            }
-        }
-        showFragment(fragment, screen.addToBackStack)
     }
 
     override fun obtainEvent(event: Event) {

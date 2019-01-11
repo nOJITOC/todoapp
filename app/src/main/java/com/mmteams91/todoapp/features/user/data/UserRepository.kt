@@ -5,12 +5,18 @@ import com.mmteams91.todoapp.core.extensions.applyString
 import com.mmteams91.todoapp.core.extensions.fromJson
 import com.mmteams91.todoapp.core.extensions.toJson
 import com.mmteams91.todoapp.features.user.User
+import com.mmteams91.todoapp.features.user.auth.UserFromResponseTransformer
 import com.squareup.moshi.Moshi
+import io.reactivex.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class UserRepository @Inject constructor(
         private val sharedPreferences: SharedPreferences,
-        private val moshi: Moshi
+        private val moshi: Moshi,
+        private val authApi: AuthApi,
+        private val userFromResponseTransformer: UserFromResponseTransformer
 ) : IUserRepository {
     override var user: User?
         get() = sharedPreferences.getString(USER_PREFERENCE_KEY, null)
@@ -22,6 +28,10 @@ class UserRepository @Inject constructor(
         }
     override val accessToken: String?
         get() = sharedPreferences.getString(TOKEN_KEY, null)
+
+    override fun auth(email: String, password: String): Single<User> {
+        return authApi.auth(email, password).map { userFromResponseTransformer.transform(it) }
+    }
 }
 
 const val WEB_SOCKET_URL_KEY = "web_socket"

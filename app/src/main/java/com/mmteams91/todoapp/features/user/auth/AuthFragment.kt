@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.mmteams91.todoapp.R
 import com.mmteams91.todoapp.core.presentation.view.BaseFragment
 import com.mmteams91.todoapp.core.presentation.viewmodel.Event
+import com.mmteams91.todoapp.features.user.auth.AuthViewModel.Companion.SHOW_ERROR
 import kotlinx.android.synthetic.main.auth_fragment.*
 
 class AuthFragment : BaseFragment<AuthViewModel>(AuthViewModel::class.java) {
@@ -16,7 +17,11 @@ class AuthFragment : BaseFragment<AuthViewModel>(AuthViewModel::class.java) {
     }
 
     override fun obtainEvent(event: Event) {
-
+        when (event.name) {
+            SHOW_ERROR -> {
+                error.text = getString(event.typedPayload<Int>()!!)
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +31,6 @@ class AuthFragment : BaseFragment<AuthViewModel>(AuthViewModel::class.java) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        login.setOnClickListener { viewModel.tryAuth(email.text.toString(),password.text.toString()) }
+        login.setOnClickListener { viewModel.tryAuth(email.text?.trimEnd().toString(), password.text.toString()) }
     }
 }

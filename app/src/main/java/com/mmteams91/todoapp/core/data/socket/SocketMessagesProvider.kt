@@ -30,6 +30,8 @@ class SocketMessagesProvider @Inject constructor(
 
     var webSocket: WebSocket? = null
 
+    fun isStarted() = lifecycle.currentState == Lifecycle.State.STARTED
+
     fun start(url: String) {
         webSocket?.cancel()
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)

@@ -1,4 +1,4 @@
-package com.mmteams91.todoapp.core.data.network.models
+package com.mmteams91.todoapp.features.user.data
 
 import com.mmteams91.todoapp.core.entities.ITzInfo
 import com.squareup.moshi.Json

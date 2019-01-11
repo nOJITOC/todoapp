@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "API_URL", "\"https://localhost.com/\""
+        buildConfigField "String", "API_URL", "\"https://todoist.com/api/v7/\""
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -21,13 +21,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "API_URL", "\"https://localhost.com/\""
         }
         debug {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "API_URL", "\"https://private-51aa98-mc21fourxxi.apiary-mock.com\""
         }
     }
     androidExtensions {

@@ -1,6 +1,5 @@
-package com.mmteams91.todoapp.core.data.network.apis
+package com.mmteams91.todoapp.features.user.data
 
-import com.mmteams91.todoapp.core.data.network.models.UserResponse
 import io.reactivex.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

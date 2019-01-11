@@ -1,5 +1,6 @@
 package com.mmteams91.todoapp.core.data.network
 
+import com.mmteams91.todoapp.BuildConfig
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -8,12 +9,12 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 
-@Module
+@Module(includes = [ApiModule::class])
 class NetworkModule {
-
 
 
     @Singleton
@@ -26,13 +27,16 @@ class NetworkModule {
     fun provideMoshi(): Moshi = Moshi.Builder().build()
 
     @Provides
-    fun provideScheduler() : Scheduler = Schedulers.newThread()
+    fun provideScheduler(): Scheduler = Schedulers.newThread()
 
     @Singleton
     @Provides
     @NotNeedAuth
-    fun provideRetrofitINotNeedAuth():Retrofit = Retrofit.Builder()
+    fun provideRetrofitIfNotNeedAuth(@NotNeedAuth okHttpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()
+            .baseUrl(BuildConfig.API_URL)
+            .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi).withNullSerialization())
             .build()
 
 }

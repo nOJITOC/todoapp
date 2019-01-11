@@ -7,4 +7,6 @@ abstract class BaseFragmentViewModel : BaseViewModel() {
     lateinit var appViewModel: AppViewModel
 
     fun navigateTo(screen: Screen) = appViewModel.navigateTo(screen)
+
+    override fun parseNetworkError(throwable: Throwable) = appViewModel.parseNetworkError(throwable)
 }

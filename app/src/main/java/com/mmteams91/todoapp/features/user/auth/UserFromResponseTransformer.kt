@@ -1,12 +1,12 @@
 package com.mmteams91.todoapp.features.user.auth
 
-import com.mmteams91.todoapp.core.data.network.models.FeaturesResponse
-import com.mmteams91.todoapp.core.data.network.models.TzInfoResponse
-import com.mmteams91.todoapp.core.data.network.models.UserResponse
 import com.mmteams91.todoapp.core.data.transform.transformer.Transformer
 import com.mmteams91.todoapp.features.user.Features
 import com.mmteams91.todoapp.features.user.TzInfo
 import com.mmteams91.todoapp.features.user.User
+import com.mmteams91.todoapp.features.user.data.FeaturesResponse
+import com.mmteams91.todoapp.features.user.data.TzInfoResponse
+import com.mmteams91.todoapp.features.user.data.UserResponse
 import javax.inject.Inject
 
 class UserFromResponseTransformer @Inject constructor(): Transformer<UserResponse, User> {
