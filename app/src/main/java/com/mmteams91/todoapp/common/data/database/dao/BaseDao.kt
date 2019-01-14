@@ -13,6 +13,13 @@ interface BaseDao<T : BaseRecord> {
     @Update(onConflict = REPLACE)
     fun update(vararg entities: T)
 
+
+    @Insert(onConflict = REPLACE)
+    fun insert(entities: Collection<T>)
+
+    @Update(onConflict = REPLACE)
+    fun update(entities: Collection<T>)
+
     fun getByIds(ids: LongArray): List<T>
-    
+
 }

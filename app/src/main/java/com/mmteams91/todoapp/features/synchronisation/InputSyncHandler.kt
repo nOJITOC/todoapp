@@ -2,8 +2,11 @@ package com.mmteams91.todoapp.features.synchronisation
 
 import android.content.SharedPreferences
 import com.mmteams91.todoapp.common.data.database.AppDatabase
+import com.mmteams91.todoapp.common.data.database.dao.BaseDao
+import com.mmteams91.todoapp.common.data.database.records.BaseRecord
 import com.mmteams91.todoapp.common.data.database.records.ItemRecord
 import com.mmteams91.todoapp.common.data.database.records.ProjectRecord
+import com.mmteams91.todoapp.common.entities.IBaseEntity
 import com.mmteams91.todoapp.common.extensions.applyBoolean
 import com.mmteams91.todoapp.common.extensions.applyString
 import com.mmteams91.todoapp.common.extensions.safeSubscribe
@@ -16,6 +19,8 @@ import com.mmteams91.todoapp.features.synchronisation.data.ResourceTypes.ITEMS
 import com.mmteams91.todoapp.features.synchronisation.data.ResourceTypes.PROJECTS
 import com.mmteams91.todoapp.features.synchronisation.data.SyncApi
 import com.mmteams91.todoapp.features.synchronisation.data.models.ItemSm
+import com.mmteams91.todoapp.features.synchronisation.data.models.ProjectSm
+import com.mmteams91.todoapp.features.synchronisation.data.models.SyncResponse
 import io.reactivex.Completable
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
@@ -54,7 +59,7 @@ class InputSyncHandler @Inject constructor(
     private fun sync(): Completable {
         return syncApi.sync(syncToken, resourceTypes)
                 .doOnSuccess { syncResponse ->
-                    syncResponse.items?.let { saveItems(it) }
+                    database.runInTransaction { saveEntities(syncResponse) }
                     syncToken = syncResponse.syncToken
                     if (syncResponse.fullSync) {
                         sharedPreferences.applyBoolean(IS_PRIMARY_SYNC_FINISHED, true)
@@ -62,17 +67,30 @@ class InputSyncHandler @Inject constructor(
                 }.ignoreElement()
     }
 
-    private fun saveItems(items: List<ItemSm>) {
-        val inDb = database.getItemDao().getByIds(items.map { it.id }.toLongArray()).associateBy { it.id }
-        val toInsert = mutableListOf<ItemRecord>()
-        val toUpdate = mutableListOf<ItemRecord>()
-        items.forEach {itemSm->
-            val itemRecord = itemTransformer.transform(itemSm)
-            inDb[itemSm.id]?.let {
-
-            }
+    private fun saveEntities(syncResponse: SyncResponse) {
+        syncResponse.projects?.let {
+            saveEntities(it, database.getProjectDao(), projectTransformer)
+        }
+        syncResponse.items?.let {
+            saveEntities(it, database.getItemDao(), itemTransformer)
         }
     }
+
+    private fun <T : BaseRecord, Sm : IBaseEntity> saveEntities(entities: List<Sm>, dao: BaseDao<T>, transformer: SimpleTransformer<Sm, T>) {
+        val inDb = dao.getByIds(entities.map { it.id }.toLongArray()).associateBy { it.id }
+        val toInsert = mutableListOf<T>()
+        val toUpdate = mutableListOf<T>()
+        entities.forEach { entitySm ->
+            val record = transformer.transform(entitySm)
+            inDb[entitySm.id]?.let {
+                record.localId = record.id
+                toInsert.add(record)
+            } ?: toUpdate.add(record)
+        }
+        if (toInsert.isNotEmpty()) dao.insert(toInsert)
+        if (toUpdate.isNotEmpty()) dao.update(toUpdate)
+    }
+
 
 }
 
