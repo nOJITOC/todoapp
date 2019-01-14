@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
     <!--
 
-        <com.mmteams91.todoapp.core.ui.views.CheckableImageButton
+        <com.mmteams91.todoapp.core.presentation.ui.views.CheckableImageButton
             android:id="@+id/complete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

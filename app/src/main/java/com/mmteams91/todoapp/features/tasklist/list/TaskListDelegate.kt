@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
-import com.mmteams91.todoapp.core.ui.models.IBaseVm
+import com.mmteams91.todoapp.common.presentation.ui.models.IBaseVm
 import kotlinx.android.extensions.LayoutContainer
 
 class TaskListDelegate : AbsListItemAdapterDelegate<TaskListVm, IBaseVm,TaskListDelegate.ViewHolder>() {

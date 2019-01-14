@@ -8,9 +8,9 @@ interface IUserRepository {
 
     var user: User?
 
-    val accessToken: String?
+    val token: String?
 
-    fun isAuthenticated(): Boolean = accessToken != null
+    fun isAuthenticated(): Boolean = token != null
 
     fun auth(email: String, password: String): Single<User>
 }

@@ -1,14 +1,19 @@
 package com.mmteams91.todoapp.app
 
 import android.support.v4.app.Fragment
-import com.mmteams91.todoapp.features.project.ProjectsFragment
+import com.mmteams91.todoapp.BuildConfig
+import com.mmteams91.todoapp.features.agenda.AgendaFragment
+import com.mmteams91.todoapp.features.navigator.IScreen
 import com.mmteams91.todoapp.features.user.auth.AuthFragment
+import kotlinx.android.parcel.Parcelize
 
+const val SCREEN_KEY = BuildConfig.APPLICATION_ID + ".screen"
 
-sealed class Screen(val addToBackStack: Boolean = true, val isRoot: Boolean = false) {
-    abstract fun newInstance(): Fragment
-
-    open fun name(): String = javaClass.simpleName
+sealed class Screen(
+        override val addToBackStack: Boolean = true,
+        override val isRoot: Boolean = false
+) : IScreen{
+    override fun name(): String = javaClass.simpleName
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -29,10 +34,13 @@ sealed class Screen(val addToBackStack: Boolean = true, val isRoot: Boolean = fa
     }
 }
 
+@Parcelize
 class AuthScreen : Screen(false, true) {
     override fun newInstance(): Fragment = AuthFragment.newInstance()
 }
 
-class ProjectsScreen :Screen(false,true){
-    override fun newInstance(): Fragment =ProjectsFragment.newInstance()
+@Parcelize
+class AgendaScreen : Screen(false, true) {
+    override fun newInstance(): Fragment = AgendaFragment.newInstance()
 }
+

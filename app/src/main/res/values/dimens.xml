@@ -6,4 +6,5 @@
     <dimen name="size_4">4dp</dimen>
     <dimen name="text_24">24sp</dimen>
     <dimen name="size_16">16dp</dimen>
+    <dimen name="size_64">64dp</dimen>
 </resources>

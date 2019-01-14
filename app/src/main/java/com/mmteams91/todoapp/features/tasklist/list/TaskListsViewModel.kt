@@ -1,9 +1,9 @@
 package com.mmteams91.todoapp.features.tasklist.list
 
-import com.mmteams91.todoapp.core.domain.usecases.base.FlowableUseCase
-import com.mmteams91.todoapp.core.domain.usecases.base.run
-import com.mmteams91.todoapp.core.extensions.safeSubscribe
-import com.mmteams91.todoapp.core.presentation.viewmodel.BaseFragmentViewModel
+import com.mmteams91.todoapp.common.domain.usecases.base.FlowableUseCase
+import com.mmteams91.todoapp.common.domain.usecases.base.run
+import com.mmteams91.todoapp.common.extensions.safeSubscribe
+import com.mmteams91.todoapp.common.presentation.viewmodel.BaseFragmentViewModel
 import io.reactivex.Flowable
 import io.reactivex.processors.BehaviorProcessor
 

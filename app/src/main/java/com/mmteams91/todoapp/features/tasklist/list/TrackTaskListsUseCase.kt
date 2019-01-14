@@ -1,6 +1,6 @@
 package com.mmteams91.todoapp.features.tasklist.list
 
-import com.mmteams91.todoapp.core.domain.usecases.base.FlowableUseCase
+import com.mmteams91.todoapp.common.domain.usecases.base.FlowableUseCase
 import io.reactivex.Flowable
 import javax.inject.Inject
 

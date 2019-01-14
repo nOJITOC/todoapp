@@ -1,8 +1,10 @@
 package com.mmteams91.todoapp.features.user.data
 
-import com.mmteams91.todoapp.core.entities.ITzInfo
+import com.mmteams91.todoapp.common.entities.ITzInfo
 import com.squareup.moshi.Json
+import se.ansman.kotshi.JsonSerializable
 
+@JsonSerializable
 data class TzInfoResponse(
         @Json(name = "gmt_string")
         override var gmtString: String,

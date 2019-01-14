@@ -1,7 +1,7 @@
 package com.mmteams91.todoapp.features.tasklist.list
 
-import com.mmteams91.todoapp.app.AppViewModel
-import com.mmteams91.todoapp.core.presentation.ViewModelTestBasis
+import com.mmteams91.todoapp.app.presentation.AppViewModel
+import com.mmteams91.todoapp.common.presentation.ViewModelTestBasis
 import io.reactivex.Flowable
 import io.reactivex.observers.BaseTestConsumer
 import io.reactivex.subscribers.TestSubscriber

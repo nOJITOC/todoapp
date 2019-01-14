@@ -7,8 +7,8 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.mmteams91.todoapp.R
-import com.mmteams91.todoapp.app.AppActivity
-import com.mmteams91.todoapp.core.extensions.showFragment
+import com.mmteams91.todoapp.app.presentation.AppActivity
+import com.mmteams91.todoapp.common.extensions.showFragment
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

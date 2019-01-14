@@ -2,10 +2,10 @@ package com.mmteams91.todoapp.app
 
 import android.app.Application
 import android.content.Context
-import com.mmteams91.todoapp.core.data.PersistenceModule
-import com.mmteams91.todoapp.core.data.RepositoriesModule
-import com.mmteams91.todoapp.core.data.network.NetworkModule
-import com.mmteams91.todoapp.core.presentation.viewmodel.ViewModelModule
+import com.mmteams91.todoapp.common.data.PersistenceModule
+import com.mmteams91.todoapp.common.data.RepositoriesModule
+import com.mmteams91.todoapp.common.data.network.NetworkModule
+import com.mmteams91.todoapp.common.presentation.viewmodel.ViewModelModule
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton

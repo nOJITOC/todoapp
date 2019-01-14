@@ -1,7 +1,7 @@
 package com.mmteams91.todoapp.features.user.auth
 
 import android.util.Patterns
-import com.mmteams91.todoapp.core.domain.usecases.base.CompletableUseCase
+import com.mmteams91.todoapp.common.domain.usecases.base.CompletableUseCase
 import com.mmteams91.todoapp.features.user.data.IUserRepository
 import io.reactivex.Completable
 import javax.inject.Inject

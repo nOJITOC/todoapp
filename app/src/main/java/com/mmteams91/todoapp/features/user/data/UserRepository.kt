@@ -1,9 +1,9 @@
 package com.mmteams91.todoapp.features.user.data
 
 import android.content.SharedPreferences
-import com.mmteams91.todoapp.core.extensions.applyString
-import com.mmteams91.todoapp.core.extensions.fromJson
-import com.mmteams91.todoapp.core.extensions.toJson
+import com.mmteams91.todoapp.common.extensions.applyString
+import com.mmteams91.todoapp.common.extensions.fromJson
+import com.mmteams91.todoapp.common.extensions.toJson
 import com.mmteams91.todoapp.features.user.User
 import com.mmteams91.todoapp.features.user.auth.UserFromResponseTransformer
 import com.squareup.moshi.Moshi
@@ -26,7 +26,7 @@ class UserRepository @Inject constructor(
             sharedPreferences.applyString(WEB_SOCKET_URL_KEY, value?.websocketUrl)
             sharedPreferences.applyString(TOKEN_KEY, value?.token)
         }
-    override val accessToken: String?
+    override val token: String?
         get() = sharedPreferences.getString(TOKEN_KEY, null)
 
     override fun auth(email: String, password: String): Single<User> {

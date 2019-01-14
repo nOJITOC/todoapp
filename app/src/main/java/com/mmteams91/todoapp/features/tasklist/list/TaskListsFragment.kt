@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mmteams91.todoapp.R
-import com.mmteams91.todoapp.core.presentation.view.BaseFragment
-import com.mmteams91.todoapp.core.presentation.viewmodel.Event
-import com.mmteams91.todoapp.core.ui.adapters.ListDelegationAdapterBuilder
+import com.mmteams91.todoapp.common.presentation.view.BaseFragment
+import com.mmteams91.todoapp.common.presentation.viewmodel.Event
+import com.mmteams91.todoapp.common.presentation.ui.adapters.ListDelegationAdapterBuilder
 
 class TaskListsFragment : BaseFragment<TaskListsViewModel>(TaskListsViewModel::class.java) {
     private val adapter by lazy {

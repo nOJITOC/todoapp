@@ -1,12 +1,15 @@
 package com.mmteams91.todoapp.app
 
 import android.support.annotation.StringRes
-import com.mmteams91.todoapp.app.AppViewModel.Events.HIDE_PROGRESS
-import com.mmteams91.todoapp.app.AppViewModel.Events.SHOW_PROGRESS
-import com.mmteams91.todoapp.core.data.socket.SocketMessagesProvider
-import com.mmteams91.todoapp.core.presentation.ViewModelTestBasis
-import com.mmteams91.todoapp.core.presentation.viewmodel.Event
-import com.mmteams91.todoapp.core.presentation.viewmodel.EventWithPayload
+import com.mmteams91.todoapp.app.domain.ProvideSocketConnectionUseCase
+import com.mmteams91.todoapp.app.presentation.AppViewModel
+import com.mmteams91.todoapp.app.presentation.AppViewModel.Events.HIDE_PROGRESS
+import com.mmteams91.todoapp.app.presentation.AppViewModel.Events.SHOW_PROGRESS
+import com.mmteams91.todoapp.common.data.network.models.NetworkStatusChecker
+import com.mmteams91.todoapp.common.presentation.ViewModelTestBasis
+import com.mmteams91.todoapp.common.presentation.viewmodel.Event
+import com.mmteams91.todoapp.common.presentation.viewmodel.EventWithPayload
+import com.mmteams91.todoapp.features.synchronisation.SocketMessagesProvider
 import com.mmteams91.todoapp.features.user.data.IUserRepository
 import io.reactivex.processors.PublishProcessor
 import org.junit.Before
@@ -23,10 +26,13 @@ class AppViewModelTest : ViewModelTestBasis<AppViewModel>() {
     @Mock
     lateinit var userRepository: IUserRepository
 
+    @Mock
+    lateinit var networkStatusChecker: NetworkStatusChecker
+
     @Before
     fun setUp() {
         initMocks(this)
-        subject = AppViewModel(provideSocketConnectionUseCase, socketMessagesProvider, userRepository)
+        subject = AppViewModel(provideSocketConnectionUseCase, userRepository, networkStatusChecker)
         subscribeToEvents()
     }
 

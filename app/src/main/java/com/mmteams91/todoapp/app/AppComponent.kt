@@ -1,7 +1,8 @@
 package com.mmteams91.todoapp.app
 
 import android.app.Application
-import com.mmteams91.todoapp.core.presentation.viewmodel.BaseViewModelComponent
+import com.mmteams91.todoapp.app.presentation.AppActivity
+import com.mmteams91.todoapp.common.presentation.viewmodel.BaseViewModelComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

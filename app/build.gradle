@@ -68,7 +68,10 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$project.ext.retrofit2Version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$project.ext.retrofit2Version"
     implementation "se.ansman.kotshi:api:$project.ext.kotshiVersion"
+    implementation "se.ansman.kotshi:api:$project.ext.kotshiVersion"
     kapt "se.ansman.kotshi:compiler:$project.ext.kotshiVersion"
+
+    implementation "com.squareup.okhttp3:logging-interceptor:3.11.0"
 
     //Rx
     implementation "io.reactivex.rxjava2:rxandroid:$project.ext.rxAndroid2Version"

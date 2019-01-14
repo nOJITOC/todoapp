@@ -1,8 +1,10 @@
 package com.mmteams91.todoapp.features.user.data
 
-import com.mmteams91.todoapp.core.entities.IUser
+import com.mmteams91.todoapp.common.entities.IUser
 import com.squareup.moshi.Json
+import se.ansman.kotshi.JsonSerializable
 
+@JsonSerializable
 data class UserResponse(
         @Json(name = "id")
         override var id: Long,

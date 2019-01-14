@@ -1,8 +1,8 @@
 package com.mmteams91.todoapp.features.user
 
-import com.mmteams91.todoapp.core.entities.IFeatures
-import com.mmteams91.todoapp.core.entities.ITzInfo
-import com.mmteams91.todoapp.core.entities.IUser
+import com.mmteams91.todoapp.common.entities.IFeatures
+import com.mmteams91.todoapp.common.entities.ITzInfo
+import com.mmteams91.todoapp.common.entities.IUser
 
 data class User(
         override var startPage: String,

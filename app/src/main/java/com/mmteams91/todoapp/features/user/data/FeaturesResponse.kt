@@ -1,8 +1,10 @@
 package com.mmteams91.todoapp.features.user.data
 
-import com.mmteams91.todoapp.core.entities.IFeatures
+import com.mmteams91.todoapp.common.entities.IFeatures
 import com.squareup.moshi.Json
+import se.ansman.kotshi.JsonSerializable
 
+@JsonSerializable
 data class FeaturesResponse(
         @Json(name = "beta")
         override var beta: Int,

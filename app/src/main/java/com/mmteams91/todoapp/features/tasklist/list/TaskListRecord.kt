@@ -1,8 +1,8 @@
 package com.mmteams91.todoapp.features.tasklist.list
 
 import android.os.Parcelable
-import com.mmteams91.todoapp.core.entities.ITaskList
-import com.mmteams91.todoapp.core.extensions.EMPTY
+import com.mmteams91.todoapp.common.entities.ITaskList
+import com.mmteams91.todoapp.common.extensions.EMPTY
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
